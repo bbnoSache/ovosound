@@ -1,4 +1,5 @@
-const Discord = require('discord.js');
+const {Client, RichEmbed} = require('discord.js')
+const bot = new Client()
 const ytdl = require('ytdl-core');
 const prefix = "!"
 const client = new Discord.Client();
