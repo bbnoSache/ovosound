@@ -1,16 +1,12 @@
 const Discord = require('discord.js');
-const {
-	prefix,
-} = require('./config.json');
 const ytdl = require('ytdl-core');
-
+const prefix = "!"
 const client = new Discord.Client();
 
 const queue = new Map();
 
 client.once('ready', () => {
-   client.user.setActivity(`Life`, {type: ("PLAYING")})
-    console.log('Alive, chief');
+	console.log('Ready!');
 });
 
 client.once('reconnecting', () => {
@@ -37,7 +33,7 @@ client.on('message', async message => {
 		stop(message, serverQueue);
 		return;
 	} else {
-		message.channel.send('')
+		message.channel.send('You need to enter a valid command!')
 	}
 });
 
@@ -45,7 +41,7 @@ async function execute(message, serverQueue) {
 	const args = message.content.split(' ');
 
 	const voiceChannel = message.member.voiceChannel;
-	if (!voiceChannel) return message.channel.send('You have ot be in a voice channel in order to lsiten to music.');
+	if (!voiceChannel) return message.channel.send('You need to be in a voice channel to play music!');
 	const permissions = voiceChannel.permissionsFor(message.client.user);
 	if (!permissions.has('CONNECT') || !permissions.has('SPEAK')) {
 		return message.channel.send('I need the permissions to join and speak in your voice channel!');
@@ -89,13 +85,13 @@ async function execute(message, serverQueue) {
 }
 
 function skip(message, serverQueue) {
-	if (!message.member.voiceChannel) return message.channel.send('You gotta be in a voice channel to skip the current song.');
-	if (!serverQueue) return message.channel.send('There is no song to skip chief.');
+	if (!message.member.voiceChannel) return message.channel.send('You have to be in a voice channel to stop the music!');
+	if (!serverQueue) return message.channel.send('There is no song that I could skip!');
 	serverQueue.connection.dispatcher.end();
 }
 
 function stop(message, serverQueue) {
-	if (!message.member.voiceChannel) return message.channel.send('You have to be in a voice channel to stop the music.');
+	if (!message.member.voiceChannel) return message.channel.send('You have to be in a voice channel to stop the music!');
 	serverQueue.songs = [];
 	serverQueue.connection.dispatcher.end();
 }
