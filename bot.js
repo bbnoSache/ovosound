@@ -1,23 +1,23 @@
 const Discord = require('discord.js');
 const ytdl = require('ytdl-core');
 const prefix = "!"
-const client = new Discord.Client();
+const bot = new Discord.Client();
 
 const queue = new Map();
 
-client.once('ready', () => {
+bot.on('ready', () => {
 	console.log('Ready!');
 });
 
-client.once('reconnecting', () => {
+bot.on('reconnecting', () => {
 	console.log('Reconnecting!');
 });
 
-client.once('disconnect', () => {
+bot.on('disconnect', () => {
 	console.log('Disconnect!');
 });
 
-client.on('message', async message => {
+bot.on('message', async message => {
 	if (message.author.bot) return;
 	if (!message.content.startsWith(prefix)) return;
 
