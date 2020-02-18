@@ -1,7 +1,5 @@
 const {Client, Attachment} = require('discord.js');
 const bot = new Client()
-const fs = require('fs')
-const data = require("./data.json")
 let activated = '0'
 
 bot.on('ready', ()=>{
