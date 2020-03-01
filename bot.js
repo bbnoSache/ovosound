@@ -4,7 +4,7 @@ let activated = '0'
 
 bot.on('ready', ()=>{
     console.log('Isla Nerva Support Bot #2 is now online!')
-    bot.user.setActivity(`${bot.users.size} Users | nHelp`, {type: ("WATCHING")})
+    bot.user.setActivity(`${bot.users.size} Users`, {type: ("WATCHING")})
 })
 
 bot.on('message', function(message) {
