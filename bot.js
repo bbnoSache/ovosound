@@ -4,8 +4,138 @@ let activated = '0'
 
 bot.on('ready', ()=>{
     console.log('Isla Nerva Support Bot #2 is now online!')
-    bot.user.setActivity(`${bot.users.size} Users`, {type: ("WATCHING")})
+    bot.user.setActivity(`${bot.users.size} Users ✔ Server #1`, {type: ("WATCHING")})
+    var Channel = bot.channels.get("687013128709603361");
+    Channel.fetchMessage("687031350049374372");
 })
+
+bot.on("messageUpdate", async(oldMessage, newMessage) =>{
+    if(oldMessage.content === newMessage.content){
+        return;
+    }
+        let logEmbed = new RichEmbed()
+        .setAuthor(oldMessage.author.tag, oldMessage.author.avatarURL)
+        .setThumbnail(oldMessage.author.avatarurl)
+        .setColor("Random")
+        .setDescription("**Message Edited**:")
+        .addField("**Previous**", oldMessage.content, true)
+        .addField("**After**", newMessage.content, true)
+        .addField("**Deleted at:**", message.createdAt)
+        .setTimestamp()
+
+        let loggingChannel = newMessage.guild.channels.find(ch => ch.name === "otherlogs")
+        if(!loggingChannel) return;
+
+        loggingChannel.send(logEmbed);
+
+})
+
+bot.on("messageDelete", async message =>{
+    
+        let deleteEmbed = new RichEmbed()
+        .setAuthor(message.author.tag, message.author.avatarURL)
+        .setThumbnail(message.author.avatarurl)
+        .setColor("Random")
+        .setDescription("**Message Deleted**:")
+        .addField("**Message:**", message.content, true)
+        .addField("**Deleted by:**", message.author.tag, true)
+        .addField("**Deleted in:**", message.channel, true)
+        .addField("**Deleted at:**", message.createdAt)
+        .setTimestamp()
+
+        let loggingChannel = message.guild.channels.find(ch => ch.name === "otherlogs")
+        if(!loggingChannel) return;
+
+        loggingChannel.send(deleteEmbed);
+
+})
+
+
+bot.on('guildMemberAdd', member => {
+    console.log('User ' + member.user.tag + ' has joined the server!');
+  
+    var role = member.guild.roles.find('name', 'Islander ✔');
+    member.addRole(role);
+    console.log('Islander role added to ' + member.user.tag + '')
+})
+
+bot.on('raw', event =>{
+    const eventname = event.t
+    if(eventname === 'MESSAGE_REACTION_ADD')
+    {
+        var reactionChannel = bot.channels.get(event.d.channel_id);
+        if(event.d.message_id === '687031350049374372')
+        {
+            reactionChannel.fetchMessage(event.d.message_id)
+            .then(msg => {
+            var msgReaction = msg.reactions.get(event.d.emoji.name + ":" + event.d.emoji.id);
+            var user = bot.users.get(event.d.user_id)
+            })
+            .catch(err => console.log(err))
+        }
+        else {
+            reactionChannel.fetchMessage(event.d.message_id)
+            .then(msg => {
+            var msgReaction = msg.reactions.get(event.d.emoji.name + ":" + event.d.emoji.id);
+            var user = bot.users.get(event.d.user_id)
+            })
+            .catch(err => console.log(err))
+        }
+    }
+});
+
+bot.on('messageReactionAdd', (messageReaction, user) =>{
+    var roleName = messageReaction.emoji.name
+    var role2 = messageReaction.message.guild.roles.find("name", "Content Creator");
+    var member = messageReaction.message.guild.members.find(member => member.id === user.id);
+    if(member)
+    {
+        if(roleName === 'Youtube'){
+            member.addRole(role2.id)
+            console.log('Added Content Creator role to ' + member.user.tag + '')
+        }
+    }
+});
+
+bot.on('messageReactionAdd', (messageReaction, user) =>{
+    var roleName = messageReaction.emoji.name
+    var role3 = messageReaction.message.guild.roles.find("name", "Streamer");
+    var member = messageReaction.message.guild.members.find(member => member.id === user.id);
+    if(member)
+    {
+        if(roleName === 'Twitch'){
+            member.addRole(role3.id)
+            console.log('Added Streamer role to ' + member.user.tag + '')
+        }
+    }
+});
+
+bot.on('messageReactionAdd', (messageReaction, user) =>{
+    var roleName = messageReaction.emoji.name
+    var role4 = messageReaction.message.guild.roles.find("name", "Artist");
+    var member = messageReaction.message.guild.members.find(member => member.id === user.id);
+    if(member)
+    {
+        if(roleName === 'NervaPalmTreeHeart'){
+            member.addRole(role4.id)
+            console.log('Added Artist role to ' + member.user.tag + '')
+        }
+    }
+});
+
+bot.on('messageReactionAdd', (messageReaction, user) =>{
+    var roleName = messageReaction.emoji.name
+    var role5 = messageReaction.message.guild.roles.find("name", "Event 🎫");
+    var member = messageReaction.message.guild.members.find(member => member.id === user.id);
+    if(member)
+    {
+        if(roleName === 'NervaEvent'){
+            member.addRole(role5.id)
+            console.log('Added Event role to ' + member.user.tag + '')
+        }
+    }
+});
+
 
 bot.on('message', function(message) {
     if (message.content === "$loop") { 
@@ -26,30 +156,14 @@ bot.on('message', function(message) {
     }
 });
 
-/*bot.on('guildMemberAdd', member=>{
-    let channel = member.guild.channels.find(channel => channel.id === "679496344477761537")
-    const embed = new RichEmbed()
-    .setFooter(`You are user #${member.guild.memberCount}`, ``, ``)
-    .setAuthor(`Welcome to Isla Nerva! ★ `, `https://cdn.discordapp.com/attachments/644280224120569867/681408010681319433/Yolo.png`, ``)
-    .setThumbnail(`https://media.giphy.com/media/W4dGm4sLnEd5ug0SYf/giphy.gif`)
-    .setImage(`https://cdn.discordapp.com/attachments/612985420350750733/681718576281157635/IslaNervaBanner.png`)
-    .setDescription(`**Thank you for joining, ${member}! We hope you enjoy your stay!** <:NervaVerifyCheck:681014423581753373>`)
-    .addField("**Server Name:**", `${member.guild.name}`, true)
-    .addField("**Server Owner:**", `${member.guild.owner}`, true)
-    .addField("**Total Users:**", `${member.guild.memberCount}`, true)
-    .setColor(0xffffff);
-
-    channel.sendEmbed(embed);
-})*/
-
 bot.on('guildMemberAdd', member=>{
     let channel = member.guild.channels.find(channel => channel.id === "681403062598107162")
     const embed = new RichEmbed()
     .setFooter(`You are user #${member.guild.memberCount}`, bot.user.displayAvatarURL)
-    .setAuthor(`Welcome to Isla Nerva's Discord!`, `https://cdn.discordapp.com/attachments/612985420350750733/686088244739440650/lordio.png`, ``)
+    .setAuthor(`Welcome to Isla Nerva's Discord!`, `https://cdn.discordapp.com/attachments/601538154591420428/686773906601672733/Paradise.png`, ``)
     .setThumbnail(`https://cdn.discordapp.com/attachments/612985420350750733/686087362618720278/MOSHED-2020-3-8-0-45-41.jpg`)
     .setImage(`https://cdn.discordapp.com/attachments/686056415143657500/686058196938522654/bobofet.png`)
-    .setDescription(`**Thank you for joining, ${member}! We hope you enjoy your stay!** <:NervaVerifyCheck:681014423581753373> **Please** be sure to check out the <#681043060834304000> channel.`)
+    .setDescription(`**Thank you for joining, ${member}! We hope you enjoy your stay!** <:NervaVerifyCheck:681014423581753373> **Please** be sure to check out the <#686319320489656331> channel.`)
     .addField("**Server Name:**", `${member.guild.name}`, true)
     .addField("**Server Owners:**", `<@588977246744608778>, <@435158112480133121>`, true)
     .addField("**Total Users:**", `${member.guild.memberCount}`, true)
@@ -57,6 +171,34 @@ bot.on('guildMemberAdd', member=>{
 
     channel.sendEmbed(embed);
 })
+
+bot.on('message', msg =>{
+    function sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
+    if(msg.author.id === '588977246744608778')
+    {
+        if(msg.content === '-Activate')
+        {
+            activated = '1'
+        }
+        if(msg.content === '-Deactivate')
+        {
+            activated = '0'
+        }
+    }
+    if(msg.author.id === '588977246744608778')
+    {
+        if(activated === '1')
+        {
+            console.log('wtf')
+            let content = msg.content
+            msg.channel.bulkDelete('1')
+            msg.channel.send(content)
+        }
+    }
+});
+
 
 bot.on('message', async message => {
     let blacklisted = ['nigger', 'nigga', 'faggot', 'tiger',]
@@ -114,21 +256,39 @@ bot.on('message', message => {
 });
 
 bot.on('message', message => {
-    if (message.content === '!ReportTem') {
-        message.channel.send(`Here is the template for making a Report:
+    if (message.content === '!ReportHelp') {
+        let member = message.author
+        message.channel.send(`<:NervaVerifyCheck:681014423581753373> ${member}, Here is the template for making a **Report**:
 
-<:PurpleArrow:679565824968622134> **Discord Name: **
-<:PurpleArrow:679565824968622134> **Steam Name & Unique ID:**
-<:PurpleArrow:679565824968622134> **Rule/s Broken:**
-<:PurpleArrow:679565824968622134> **Short Description of what happened:**
-<:PurpleArrow:679565824968622134> **Proof:**`);
+> <:NervaWhiteArrow:686281746245091410> **Discord Name: **
+> <:NervaWhiteArrow:686281746245091410> **Steam Name & Unique ID:**
+> <:NervaWhiteArrow:686281746245091410> **Rule/s Broken:**
+> <:NervaWhiteArrow:686281746245091410> **Short Description of what happened:**
+> <:NervaWhiteArrow:686281746245091410> **Proof:**`);
     }
 });
 
 bot.on('message', message => {
-    if (message.content === '!Ping') {
-        let m = message.channel.send("**Calculating**");
-        message.channel.send(`Latency is ${m.createdTimestamp - message.createdTimestamp}ms. API Latency is ${Math.round(bot.ping)}ms`);
+    if (message.content === '!DepositHelp') {
+        let member = message.author
+        message.channel.send(`<:NervaVerifyCheck:681014423581753373> ${member}, Here is the template for requesting a **Deposit**:
+
+> <:NervaCredits:681369350992953364> **Discord Name: **
+> <:NervaCredits:681369350992953364> **Steam Name & Unique ID:**
+> <:NervaCredits:681369350992953364> **Dinosaur:**`);
+    }
+});
+
+bot.on('message', message => {
+    if (message.content === '!FindServer') {
+        let member = message.author
+        message.channel.send(`${member}, Can't find the Server or having trouble finding others as well?
+> **Open Steam
+> Click on Steam in the Top Left
+> Click on Settings
+> Then Click In-Game
+> Change the "In-Game server browser: Max pings / Minute" to 1000
+> Restart The Isle.**`);
     }
 });
 
