@@ -163,7 +163,7 @@ bot.on('guildMemberAdd', member=>{
     .setAuthor(`Welcome to Isla Nerva's Discord!`, `https://cdn.discordapp.com/attachments/601538154591420428/686773906601672733/Paradise.png`, ``)
     .setThumbnail(`https://cdn.discordapp.com/attachments/612985420350750733/686087362618720278/MOSHED-2020-3-8-0-45-41.jpg`)
     .setImage(`https://cdn.discordapp.com/attachments/686056415143657500/686058196938522654/bobofet.png`)
-    .setDescription(`**Thank you for joining, ${member}! We hope you enjoy your stay!** <:NervaVerifyCheck:681014423581753373> **Please** be sure to check out the <#686319320489656331> channel.`)
+    .setDescription(`**Thank you for joining, ${member}! We hope you enjoy your stay!** <a:NervaVerified:688654927643541534> **Please** be sure to check out the <#686319320489656331> channel.`)
     .addField("**Server Name:**", `${member.guild.name}`, true)
     .addField("**Server Owners:**", `<@588977246744608778>, <@435158112480133121>`, true)
     .addField("**Total Users:**", `${member.guild.memberCount}`, true)
