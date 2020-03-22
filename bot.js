@@ -228,7 +228,7 @@ bot.on('message', message => {
         .addField("**Server Name:**", `${message.guild.name}`, true)
         .addField("**Server Owner:**", `${message.guild.owner}`, true)
         .addField("**Total Users:**", `${message.guild.memberCount}`, true)
-        .setFooter(`Nerva Support 2`, bot.user.displayAvatarURL);
+        .setFooter(`Nerva Support`, bot.user.displayAvatarURL);
         message.channel.send({embed: sEmbed});
     }
 });
@@ -258,7 +258,7 @@ bot.on('message', message => {
 bot.on('message', message => {
     if (message.content === '!ReportHelp') {
         let member = message.author
-        message.channel.send(`<:NervaVerifyCheck:681014423581753373> ${member}, Here is the template for making a **Report**:
+        message.channel.send(`<a:NervaVerified:688654927643541534> ${member}, Here is the template for making a **Report**:
 
 > <:NervaWhiteArrow:686281746245091410> **Discord Name: **
 > <:NervaWhiteArrow:686281746245091410> **Steam Name & Unique ID:**
@@ -271,13 +271,26 @@ bot.on('message', message => {
 bot.on('message', message => {
     if (message.content === '!DepositHelp') {
         let member = message.author
-        message.channel.send(`<:NervaVerifyCheck:681014423581753373> ${member}, Here is the template for requesting a **Deposit**:
+        message.channel.send(`<a:NervaVerified:688654927643541534> ${member}, Here is the template for requesting a **Deposit**:
 
 > <:NervaCredits:681369350992953364> **Discord Name: **
 > <:NervaCredits:681369350992953364> **Steam Name & Unique ID:**
 > <:NervaCredits:681369350992953364> **Dinosaur:**`);
     }
 });
+
+bot.on('message', message => {
+    if (message.content === '!RequestHelp') {
+        let member = message.author
+        message.channel.send(`<a:NervaVerified:688654927643541534> ${member}, Here is the template for requesting a **Grow or Non-Survival**:
+
+> <:NervaWhiteArrow:686281746245091410> **Steam Name & Unique ID:**
+> <:NervaWhiteArrow:686281746245091410> **Dinosaur:**
+> <:NervaWhiteArrow:686281746245091410> **Growth Stage**
+> <:NervaWhiteArrow:686281746245091410> **Payment**`);
+    }
+});
+
 
 bot.on('message', message => {
     if (message.content === '!FindServer') {
