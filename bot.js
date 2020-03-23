@@ -136,6 +136,45 @@ bot.on('messageReactionAdd', (messageReaction, user) =>{
     }
 });
 
+bot.on('messageReactionAdd', (messageReaction, user) =>{
+    var roleName = messageReaction.emoji.name
+    var role6 = messageReaction.message.guild.roles.find("name", "Herbivore");
+    var member = messageReaction.message.guild.members.find(member => member.id === user.id);
+    if(member)
+    {
+        if(roleName === 'Nerva'){
+            member.addRole(role6.id)
+            console.log('Added Event role to ' + member.user.tag + '')
+        }
+    }
+});
+
+bot.on('messageReactionAdd', (messageReaction, user) =>{
+    var roleName = messageReaction.emoji.name
+    var role7 = messageReaction.message.guild.roles.find("name", "Carnivore");
+    var member = messageReaction.message.guild.members.find(member => member.id === user.id);
+    if(member)
+    {
+        if(roleName === 'IslaNerva'){
+            member.addRole(role7.id)
+            console.log('Added Event role to ' + member.user.tag + '')
+        }
+    }
+});
+
+bot.on('messageReactionAdd', (messageReaction, user) =>{
+    var roleName = messageReaction.emoji.name
+    var role8 = messageReaction.message.guild.roles.find("name", "Omnivore");
+    var member = messageReaction.message.guild.members.find(member => member.id === user.id);
+    if(member)
+    {
+        if(roleName === 'NervaPremiumCredits'){
+            member.addRole(role8.id)
+            console.log('Added Event role to ' + member.user.tag + '')
+        }
+    }
+});
+
 
 bot.on('message', function(message) {
     if (message.content === "$loop") { 
