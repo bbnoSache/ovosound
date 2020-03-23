@@ -110,7 +110,6 @@ bot.on('messageReactionRemove', (messageReaction, user) =>{
     }
 });
 
-
 bot.on('messageReactionAdd', (messageReaction, user) =>{
     var roleName = messageReaction.emoji.name
     var role3 = messageReaction.message.guild.roles.find("name", "Streamer");
@@ -189,6 +188,85 @@ bot.on('messageReactionAdd', (messageReaction, user) =>{
     }
 });
 
+//Divider
+
+bot.on('messageReactionRemove', (messageReaction, user) =>{
+    var roleName = messageReaction.emoji.name
+    var role3 = messageReaction.message.guild.roles.find("name", "Streamer");
+    var member = messageReaction.message.guild.members.find(member => member.id === user.id);
+    if(member)
+    {
+        if(roleName === 'Twitch'){
+            member.removeRole(role3.id)
+            console.log('Removed Streamer role from ' + member.user.tag + '')
+        }
+    }
+});
+
+bot.on('messageReactionRemove', (messageReaction, user) =>{
+    var roleName = messageReaction.emoji.name
+    var role4 = messageReaction.message.guild.roles.find("name", "Artist");
+    var member = messageReaction.message.guild.members.find(member => member.id === user.id);
+    if(member)
+    {
+        if(roleName === 'NervaPalmTreeHeart'){
+            member.removeRole(role4.id)
+            console.log('Removed Artist role from ' + member.user.tag + '')
+        }
+    }
+});
+
+bot.on('messageReactionRemove', (messageReaction, user) =>{
+    var roleName = messageReaction.emoji.name
+    var role5 = messageReaction.message.guild.roles.find("name", "Event 🎫");
+    var member = messageReaction.message.guild.members.find(member => member.id === user.id);
+    if(member)
+    {
+        if(roleName === 'NervaEvent'){
+            member.removeRole(role5.id)
+            console.log('Removed Event role from ' + member.user.tag + '')
+        }
+    }
+});
+
+bot.on('messageReactionRemove', (messageReaction, user) =>{
+    var roleName = messageReaction.emoji.name
+    var role6 = messageReaction.message.guild.roles.find("name", "Herbivore");
+    var member = messageReaction.message.guild.members.find(member => member.id === user.id);
+    if(member)
+    {
+        if(roleName === 'Nerva'){
+            member.removeRole(role6.id)
+            console.log('Removed Event role from ' + member.user.tag + '')
+        }
+    }
+});
+
+bot.on('messageReactionRemove', (messageReaction, user) =>{
+    var roleName = messageReaction.emoji.name
+    var role7 = messageReaction.message.guild.roles.find("name", "Carnivore");
+    var member = messageReaction.message.guild.members.find(member => member.id === user.id);
+    if(member)
+    {
+        if(roleName === 'IslaNerva'){
+            member.removeRole(role7.id)
+            console.log('Removed Event role from ' + member.user.tag + '')
+        }
+    }
+});
+
+bot.on('messageReactionRemove', (messageReaction, user) =>{
+    var roleName = messageReaction.emoji.name
+    var role8 = messageReaction.message.guild.roles.find("name", "Omnivore");
+    var member = messageReaction.message.guild.members.find(member => member.id === user.id);
+    if(member)
+    {
+        if(roleName === 'NervaPremiumCredits'){
+            member.removeRole(role8.id)
+            console.log('Added Event role to ' + member.user.tag + '')
+        }
+    }
+});
 
 bot.on('message', function(message) {
     if (message.content === "$loop") { 
