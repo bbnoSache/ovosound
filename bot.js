@@ -3,60 +3,18 @@ const bot = new Client()
 let activated = '0'
 
 bot.on('ready', ()=>{
-    console.log('Isla Nerva Support Bot #2 is now online!')
-    bot.user.setActivity(`${bot.users.size} Users ✔ Server #1`, {type: ("WATCHING")})
-    var Channel = bot.channels.get("687013128709603361");
-    Channel.fetchMessage("687031350049374372");
+    console.log('Dude is Alive')
+    bot.user.setActivity(`Slucc Draw, as Always`, {type: ("WATCHING")})
+    var Channel = bot.channels.get("697672202668998767");
+    Channel.fetchMessage("699468674410479696");
 })
-
-bot.on("messageUpdate", async(oldMessage, newMessage) =>{
-    if(oldMessage.content === newMessage.content){
-        return;
-    }
-        let logEmbed = new RichEmbed()
-        .setAuthor(oldMessage.author.tag, oldMessage.author.avatarURL)
-        .setThumbnail(oldMessage.author.avatarurl)
-        .setColor("Random")
-        .setDescription("**Message Edited**:")
-        .addField("**Previous**", oldMessage.content, true)
-        .addField("**After**", newMessage.content, true)
-        .addField("**Deleted at:**", message.createdAt)
-        .setTimestamp()
-
-        let loggingChannel = newMessage.guild.channels.find(ch => ch.name === "otherlogs")
-        if(!loggingChannel) return;
-
-        loggingChannel.send(logEmbed);
-
-})
-
-bot.on("messageDelete", async message =>{
-    
-        let deleteEmbed = new RichEmbed()
-        .setAuthor(message.author.tag, message.author.avatarURL)
-        .setThumbnail(message.author.avatarurl)
-        .setColor("Random")
-        .setDescription("**Message Deleted**:")
-        .addField("**Message:**", message.content, true)
-        .addField("**Deleted by:**", message.author.tag, true)
-        .addField("**Deleted in:**", message.channel, true)
-        .addField("**Deleted at:**", message.createdAt)
-        .setTimestamp()
-
-        let loggingChannel = message.guild.channels.find(ch => ch.name === "otherlogs")
-        if(!loggingChannel) return;
-
-        loggingChannel.send(deleteEmbed);
-
-})
-
 
 bot.on('guildMemberAdd', member => {
-    console.log('User ' + member.user.tag + ' has joined the server!');
+    console.log('User ' + member.user.tag + ' has joined the server');
   
-    var role = member.guild.roles.find('name', 'Islander ✔');
+    var role = member.guild.roles.find('name', '★');
     member.addRole(role);
-    console.log('Islander role added to ' + member.user.tag + '')
+    console.log('★ added to ' + member.user.tag + '')
 })
 
 bot.on('raw', event =>{
@@ -64,7 +22,7 @@ bot.on('raw', event =>{
     if(eventname === 'MESSAGE_REACTION_ADD')
     {
         var reactionChannel = bot.channels.get(event.d.channel_id);
-        if(event.d.message_id === '687031350049374372')
+        if(event.d.message_id === '699468674410479696')
         {
             reactionChannel.fetchMessage(event.d.message_id)
             .then(msg => {
@@ -86,39 +44,39 @@ bot.on('raw', event =>{
 
 bot.on('messageReactionAdd', (messageReaction, user) =>{
     var roleName = messageReaction.emoji.name
-    var role2 = messageReaction.message.guild.roles.find("name", "Content Creator");
+    var role2 = messageReaction.message.guild.roles.find("name", "Movie Ping");
     var member = messageReaction.message.guild.members.find(member => member.id === user.id);
     if(member)
     {
-        if(roleName === 'Youtube'){
+        if(roleName === 'SluccYes'){
             member.addRole(role2.id)
-            console.log('Added Content Creator role to ' + member.user.tag + '')
+            console.log('Added Movie Ping role to ' + member.user.tag + '')
         }
     }
 });
 
 bot.on('messageReactionRemove', (messageReaction, user) =>{
     var roleName = messageReaction.emoji.name
-    var role2 = messageReaction.message.guild.roles.find("name", "Content Creator");
+    var role2 = messageReaction.message.guild.roles.find("name", "Movie Ping");
     var member = messageReaction.message.guild.members.find(member => member.id === user.id);
     if(member)
     {
-        if(roleName === 'Youtube'){
+        if(roleName === 'SluccYes'){
             member.removeRole(role2.id)
-            console.log('Removed Content Creator role from ' + member.user.tag + '')
+            console.log('Removed Movie Ping role from ' + member.user.tag + '')
         }
     }
 });
 
 bot.on('messageReactionAdd', (messageReaction, user) =>{
     var roleName = messageReaction.emoji.name
-    var role3 = messageReaction.message.guild.roles.find("name", "Streamer");
+    var role3 = messageReaction.message.guild.roles.find("name", "Game Ping");
     var member = messageReaction.message.guild.members.find(member => member.id === user.id);
     if(member)
     {
-        if(roleName === 'Twitch'){
+        if(roleName === 'SacheYes'){
             member.addRole(role3.id)
-            console.log('Added Streamer role to ' + member.user.tag + '')
+            console.log('Added Game Ping role to ' + member.user.tag + '')
         }
     }
 });
@@ -129,61 +87,9 @@ bot.on('messageReactionAdd', (messageReaction, user) =>{
     var member = messageReaction.message.guild.members.find(member => member.id === user.id);
     if(member)
     {
-        if(roleName === 'NervaPalmTreeHeart'){
+        if(roleName === 'SluccStarEye'){
             member.addRole(role4.id)
             console.log('Added Artist role to ' + member.user.tag + '')
-        }
-    }
-});
-
-bot.on('messageReactionAdd', (messageReaction, user) =>{
-    var roleName = messageReaction.emoji.name
-    var role5 = messageReaction.message.guild.roles.find("name", "Event 🎫");
-    var member = messageReaction.message.guild.members.find(member => member.id === user.id);
-    if(member)
-    {
-        if(roleName === 'NervaEvent'){
-            member.addRole(role5.id)
-            console.log('Added Event role to ' + member.user.tag + '')
-        }
-    }
-});
-
-bot.on('messageReactionAdd', (messageReaction, user) =>{
-    var roleName = messageReaction.emoji.name
-    var role6 = messageReaction.message.guild.roles.find("name", "Herbivore");
-    var member = messageReaction.message.guild.members.find(member => member.id === user.id);
-    if(member)
-    {
-        if(roleName === 'Nerva'){
-            member.addRole(role6.id)
-            console.log('Added Event role to ' + member.user.tag + '')
-        }
-    }
-});
-
-bot.on('messageReactionAdd', (messageReaction, user) =>{
-    var roleName = messageReaction.emoji.name
-    var role7 = messageReaction.message.guild.roles.find("name", "Carnivore");
-    var member = messageReaction.message.guild.members.find(member => member.id === user.id);
-    if(member)
-    {
-        if(roleName === 'IslaNerva'){
-            member.addRole(role7.id)
-            console.log('Added Event role to ' + member.user.tag + '')
-        }
-    }
-});
-
-bot.on('messageReactionAdd', (messageReaction, user) =>{
-    var roleName = messageReaction.emoji.name
-    var role8 = messageReaction.message.guild.roles.find("name", "Omnivore");
-    var member = messageReaction.message.guild.members.find(member => member.id === user.id);
-    if(member)
-    {
-        if(roleName === 'NervaPremiumCredits'){
-            member.addRole(role8.id)
-            console.log('Added Event role to ' + member.user.tag + '')
         }
     }
 });
@@ -192,13 +98,13 @@ bot.on('messageReactionAdd', (messageReaction, user) =>{
 
 bot.on('messageReactionRemove', (messageReaction, user) =>{
     var roleName = messageReaction.emoji.name
-    var role3 = messageReaction.message.guild.roles.find("name", "Streamer");
+    var role3 = messageReaction.message.guild.roles.find("name", "Game Ping");
     var member = messageReaction.message.guild.members.find(member => member.id === user.id);
     if(member)
     {
-        if(roleName === 'Twitch'){
+        if(roleName === 'SacheYes'){
             member.removeRole(role3.id)
-            console.log('Removed Streamer role from ' + member.user.tag + '')
+            console.log('Removed Game Ping role from ' + member.user.tag + '')
         }
     }
 });
@@ -209,99 +115,24 @@ bot.on('messageReactionRemove', (messageReaction, user) =>{
     var member = messageReaction.message.guild.members.find(member => member.id === user.id);
     if(member)
     {
-        if(roleName === 'NervaPalmTreeHeart'){
+        if(roleName === 'SluccStarEye'){
             member.removeRole(role4.id)
             console.log('Removed Artist role from ' + member.user.tag + '')
         }
     }
 });
 
-bot.on('messageReactionRemove', (messageReaction, user) =>{
-    var roleName = messageReaction.emoji.name
-    var role5 = messageReaction.message.guild.roles.find("name", "Event 🎫");
-    var member = messageReaction.message.guild.members.find(member => member.id === user.id);
-    if(member)
-    {
-        if(roleName === 'NervaEvent'){
-            member.removeRole(role5.id)
-            console.log('Removed Event role from ' + member.user.tag + '')
-        }
-    }
-});
-
-bot.on('messageReactionRemove', (messageReaction, user) =>{
-    var roleName = messageReaction.emoji.name
-    var role6 = messageReaction.message.guild.roles.find("name", "Herbivore");
-    var member = messageReaction.message.guild.members.find(member => member.id === user.id);
-    if(member)
-    {
-        if(roleName === 'Nerva'){
-            member.removeRole(role6.id)
-            console.log('Removed Event role from ' + member.user.tag + '')
-        }
-    }
-});
-
-bot.on('messageReactionRemove', (messageReaction, user) =>{
-    var roleName = messageReaction.emoji.name
-    var role7 = messageReaction.message.guild.roles.find("name", "Carnivore");
-    var member = messageReaction.message.guild.members.find(member => member.id === user.id);
-    if(member)
-    {
-        if(roleName === 'IslaNerva'){
-            member.removeRole(role7.id)
-            console.log('Removed Event role from ' + member.user.tag + '')
-        }
-    }
-});
-
-bot.on('messageReactionRemove', (messageReaction, user) =>{
-    var roleName = messageReaction.emoji.name
-    var role8 = messageReaction.message.guild.roles.find("name", "Omnivore");
-    var member = messageReaction.message.guild.members.find(member => member.id === user.id);
-    if(member)
-    {
-        if(roleName === 'NervaPremiumCredits'){
-            member.removeRole(role8.id)
-            console.log('Added Event role to ' + member.user.tag + '')
-        }
-    }
-});
-
-bot.on('message', function(message) {
-    if (message.content === "$loop") { 
-        var interval = setInterval (function () {
-        let dEmbed = new RichEmbed()
-        .setColor(0xffffff)
-        .setTitle("Server Info")
-        .setThumbnail(message.guild.iconURL)
-        .setAuthor(`${message.guild.name} Info`, message.guild.iconURL)
-        .addField("**Server Name:**", `${message.guild.name}`, true)
-        .addField("**Server Owner:**", `${message.guild.owner}`, true)
-        .addField("**Total Users:**", `${message.guild.memberCount}`, true)
-        .setFooter(`Nerva Support 2`, bot.user.displayAvatarURL);
-        message.channel.send({embed: dEmbed})
-            .catch(console.error);
-            console.log(`Message is looping`)
-        }, 1 * 10000); 
-    }
-});
-
 bot.on('guildMemberAdd', member=>{
-    let channel = member.guild.channels.find(channel => channel.id === "681403062598107162")
+    let channel = member.guild.channels.find(channel => channel.id === "686410560669351958")
     const embed = new RichEmbed()
-    .setFooter(`You are user #${member.guild.memberCount}`, bot.user.displayAvatarURL)
-    .setAuthor(`Welcome to Isla Nerva's Discord!`, `https://cdn.discordapp.com/attachments/601538154591420428/686773906601672733/Paradise.png`, ``)
-    .setThumbnail(`https://cdn.discordapp.com/attachments/612985420350750733/686087362618720278/MOSHED-2020-3-8-0-45-41.jpg`)
-    .setImage(`https://cdn.discordapp.com/attachments/686056415143657500/686058196938522654/bobofet.png`)
-    .setDescription(`**Thank you for joining, ${member}! We hope you enjoy your stay!** <a:NervaVerified:688654927643541534> **Please** be sure to check out the <#686319320489656331> channel.`)
-    .addField("**Server Name:**", `${member.guild.name}`, true)
-    .addField("**Server Owners:**", `<@588977246744608778>, <@435158112480133121>`, true)
-    .addField("**Total Users:**", `${member.guild.memberCount}`, true)
+    .setAuthor(`Welcome to Slucche's Discord Server!`, `https://cdn.discordapp.com/attachments/644280224120569867/697682472107900948/Dude.png`, ``)
+    .setThumbnail(`https://cdn.discordapp.com/attachments/644280224120569867/697682364305899600/Purplesd.png`)
+    .setImage(``)
+    .setDescription(`**Thank you for joining, ${member}! Please check out the <#686410636967542815> & <#686410521729171467>** channels. <a:PurpleVerify:697649110576005127>`)
     .setColor(0xFFFFFF);
 
     channel.sendEmbed(embed);
-})
+});
 
 bot.on('message', msg =>{
     function sleep(ms) {
@@ -344,95 +175,20 @@ bot.on('message', async message => {
     
       if (foundInText) {
         message.delete();
-        message.channel.sendMessage('Language, '+ message.author + '!')
+        message.channel.sendMessage('Language, '+ message.author + '! Next time you might just get probed. <:AngryDude:697673947432353792>')
     }
 });
 
 bot.on('message', message => {
-    if (message.content === '!ServerInfo') {
+    if (message.content === '!Latest') {
         let sEmbed = new RichEmbed()
         .setColor(0xffffff)
-        .setTitle("Server Info")
-        .setImage(message.author.avatarURL)
+        .setTitle("Slucche's Most Recent Upload 🤍")
         .setThumbnail(message.guild.iconURL)
-        .setAuthor(`${message.guild.name} Info`, message.guild.iconURL)
-        .addField("**Server Name:**", `${message.guild.name}`, true)
-        .addField("**Server Owner:**", `${message.guild.owner}`, true)
-        .addField("**Total Users:**", `${message.guild.memberCount}`, true)
-        .setFooter(`Nerva Support`, bot.user.displayAvatarURL);
+        .setAuthor(`${message.guild.name}`, message.guild.iconURL)
+        .addField("**Title:**", `The Start Of My LDR (basically)`)
+        .addField("**Link:**", `https://youtu.be/0e444Mt7_x0`)
         message.channel.send({embed: sEmbed});
-    }
-});
-
-bot.on('message', message => {
-    if (message.content === '!Staff') {
-        let sEmbed = new RichEmbed()
-        .setColor(0xffffff)
-        .setTitle("Current Staff")
-        .addField("**Server Owners:**", `<@588977246744608778>
-        <@435158112480133121>`, true)
-        .addField("**Supervisors:**", `<@196386598504497152>
-        <@278610754469625857>`, true)
-        .addField("**Lead Admins:**", `<@326826870412935170>
-        <@331493042492145665>`, true)
-        .setFooter(`Isla Nerva Staff`, bot.user.displayAvatarURL);
-        message.channel.send({embed: sEmbed});
-    }
-});
-
-bot.on('message', message => {
-    if (message.content === '!Users') {
-        message.channel.send(`There are currently **${message.guild.memberCount}** users in the server. `);
-    }
-});
-
-bot.on('message', message => {
-    if (message.content === '!ReportHelp') {
-        let member = message.author
-        message.channel.send(`<a:NervaVerified:688654927643541534> ${member}, Here is the template for making a **Report**:
-
-> <:NervaWhiteArrow:686281746245091410> **Discord Name: **
-> <:NervaWhiteArrow:686281746245091410> **Steam Name & Unique ID:**
-> <:NervaWhiteArrow:686281746245091410> **Rule/s Broken:**
-> <:NervaWhiteArrow:686281746245091410> **Short Description of what happened:**
-> <:NervaWhiteArrow:686281746245091410> **Proof:**`);
-    }
-});
-
-bot.on('message', message => {
-    if (message.content === '!DepositHelp') {
-        let member = message.author
-        message.channel.send(`<a:NervaVerified:688654927643541534> ${member}, Here is the template for requesting a **Deposit**:
-
-> <:NervaCredits:681369350992953364> **Discord Name: **
-> <:NervaCredits:681369350992953364> **Steam Name & Unique ID:**
-> <:NervaCredits:681369350992953364> **Dinosaur:**`);
-    }
-});
-
-bot.on('message', message => {
-    if (message.content === '!RequestHelp') {
-        let member = message.author
-        message.channel.send(`<a:NervaVerified:688654927643541534> ${member}, Here is the template for requesting a **Grow or Non-Survival**:
-
-> <:NervaWhiteArrow:686281746245091410> **Steam Name & Unique ID:**
-> <:NervaWhiteArrow:686281746245091410> **Dinosaur:**
-> <:NervaWhiteArrow:686281746245091410> **Growth Stage**
-> <:NervaWhiteArrow:686281746245091410> **Payment**`);
-    }
-});
-
-
-bot.on('message', message => {
-    if (message.content === '!FindServer') {
-        let member = message.author
-        message.channel.send(`${member}, Can't find the Server or having trouble finding others as well?
-> **Open Steam
-> Click on Steam in the Top Left
-> Click on Settings
-> Then Click In-Game
-> Change the "In-Game server browser: Max pings / Minute" to 1000
-> Restart The Isle.**`);
     }
 });
 
