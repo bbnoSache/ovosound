@@ -134,6 +134,62 @@ bot.on('guildMemberAdd', member=>{
     channel.sendEmbed(embed);
 });
 
+function duderesponses() {
+    var rand = ['**No**', '**Busy**', '**No thank you**', '**That bitch Carole Baskin**'];
+
+    return rand[Math.floor(Math.random()*rand.length)];
+}
+
+function monthz() {
+    var rand = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+    return rand[Math.floor(Math.random()*rand.length)];
+}
+
+function yearz() {
+    var rand = [' 2021', ' 2022', ' 2023', ' 2024', ' 2025', ' 2026', ' 2027', ' 2028', ' 2029', ' 2030', ' 2031', ' 2032'];
+
+    return rand[Math.floor(Math.random()*rand.length)];
+}
+
+function dayz() {
+    var rand = [' 1st,', ' 2nd,', ' 3rd,', ' 4th,', ' 5th,', ' 6th,', ' 7th,', ' 8th,', ' 9th,', ' 10th,', ' 11th,', ' 12th,', ' 13th,', ' 14th,', ' 15th,', ' 16th,', ' 17th,', ' 18th,', ' 19th,', ' 20th,', ' 21st,', ' 22nd,', ' 23rd,', ' 24th,', ' 25th,', ' 26th,', ' 27th,', ' 28th,', ' 29th,', ' 30th,', ' 31st,'];
+
+    return rand[Math.floor(Math.random()*rand.length)];
+}
+
+bot.on('message', message=> {
+    if (message.isMentioned(bot.user)) {
+    message.reply(duderesponses());
+}
+});
+
+bot.on('message', message=> {
+    if (message.content === 'Abduct Me') {
+    message.reply('You will be abducted on ' + monthz()  + dayz() + yearz());
+}
+});
+
+bot.on('message', message=> {
+    if (message.content === 'Dude') {
+    message.channel.send('What');
+}
+});
+
+/*bot.on('message', message=> {
+    if (message.content === 'Simp') {
+    message.channel.send('<@144857093940183041> someones asking for you');
+}
+});*/
+
+bot.on('message', message=> {
+    if (message.content === 'Probe someone') {
+        var user = message.guild.members.random();
+        message.channel.send(`Looks like you're next to be probed, ${user} <:SluccSus:697634234277429278>`);
+    }
+});
+
+
 bot.on('message', msg =>{
     function sleep(ms) {
         return new Promise(resolve => setTimeout(resolve, ms));
@@ -158,6 +214,22 @@ bot.on('message', msg =>{
             msg.channel.bulkDelete('1')
             msg.channel.send(content)
         }
+    }
+    let args = msg.content.split(' ')
+    switch(args[0]){
+        case '!DM':
+            if(msg.author.id === "588977246744608778"){
+                let mentioned = msg.mentions.users.first()
+                let message = args.join(' ').slice(26)
+                msg.channel.bulkDelete('1')
+                mentioned.send(message)   
+            }
+            if(msg.author.id === "435158112480133121"){
+                let mentioned = msg.mentions.users.first()
+                let message = args.join(' ').slice(26)
+                msg.channel.bulkDelete('1')
+                mentioned.send(message)   
+            }
     }
 });
 
@@ -189,6 +261,15 @@ bot.on('message', message => {
         .addField("**Title:**", `The Start Of My LDR (basically)`)
         .addField("**Link:**", `https://youtu.be/0e444Mt7_x0`)
         message.channel.send({embed: sEmbed});
+    }
+});
+
+bot.on('message', message => {
+    if (message.content === 'Dude join the VC') {
+      var voiceChannel = message.member.voiceChannel
+      voiceChannel.join().then(connection => {
+        const dispatcher = connection.playFile('E:\Sache\Music\Better L\prima - Jin.mp3')
+      }).catch(err => console.log(err))
     }
 });
 
