@@ -4,10 +4,11 @@ let activated = '0'
 
 bot.on('ready', ()=>{
     console.log('Dude is Alive')
-    bot.user.setActivity(`Slucc Draw, as Always`, {type: ("WATCHING")})
+    bot.user.setActivity(`yt.com/Slucche`, {type: ("WATCHING")})
     var Channel = bot.channels.get("697672202668998767");
     Channel.fetchMessage("699468674410479696");
 })
+
 
 bot.on('guildMemberAdd', member => {
     console.log('User ' + member.user.tag + ' has joined the server');
@@ -126,7 +127,7 @@ bot.on('guildMemberAdd', member=>{
     let channel = member.guild.channels.find(channel => channel.id === "686410560669351958")
     const embed = new RichEmbed()
     .setAuthor(`Welcome to Slucche's Discord Server!`, `https://cdn.discordapp.com/attachments/644280224120569867/697682472107900948/Dude.png`, ``)
-    .setThumbnail(`https://cdn.discordapp.com/attachments/644280224120569867/697682364305899600/Purplesd.png`)
+    .setThumbnail(`https://cdn.discordapp.com/attachments/601538154591420428/702749936797745213/NewShit.png`)
     .setImage(``)
     .setDescription(`**Thank you for joining, ${member}! Please check out the <#686410636967542815> & <#686410521729171467>** channels. <a:PurpleVerify:697649110576005127>`)
     .setColor(0xFFFFFF);
@@ -172,7 +173,7 @@ bot.on('message', message=> {
 
 bot.on('message', message=> {
     if (message.content === 'Dude') {
-    message.channel.send('What');
+    message.channel.send('What?');
 }
 });
 
@@ -183,14 +184,13 @@ bot.on('message', message=> {
 });*/
 
 bot.on('message', message=> {
-    if (message.content === 'Probe someone') {
-        var user = message.guild.members.random();
-        message.channel.send(`Looks like you're next to be probed, ${user} <:SluccSus:697634234277429278>`);
+    if(message.author.id === '435158112480133121')
+    if (message.content === 'Hey Dude') {
+        message.channel.send(`Hey Slucc! <:SluccHeartEyes:700865122788442162>`);
     }
 });
 
-
-bot.on('message', msg =>{
+/*bot.on('message', msg =>{
     function sleep(ms) {
         return new Promise(resolve => setTimeout(resolve, ms));
     }
@@ -230,9 +230,16 @@ bot.on('message', msg =>{
                 msg.channel.bulkDelete('1')
                 mentioned.send(message)   
             }
-    }
-});
+            break;
+            case 'Probe':
+                let memberz = msg.mentions.members.first();
+                let membery = msg.author;
 
+                if(msg.author.id === '435158112480133121')
+                msg.channel.send(`Looks like you're next on the list for probing, ${memberz}... <:SluccSus:697634234277429278>`);
+            break;
+    }
+});*/
 
 bot.on('message', async message => {
     let blacklisted = ['nigger', 'nigga', 'faggot', 'tiger',]
@@ -265,11 +272,117 @@ bot.on('message', message => {
 });
 
 bot.on('message', message => {
-    if (message.content === 'Dude join the VC') {
+    if (message.content === 'Dude join') {
       var voiceChannel = message.member.voiceChannel
-      voiceChannel.join().then(connection => {
-        const dispatcher = connection.playFile('E:\Sache\Music\Better L\prima - Jin.mp3')
+      voiceChannel.join()
+      .then(connection => {
+        const dispatcher = connection.playFile('.Users/Sache/Downloads/21 Savage - All My Friends (Official Audio).mp3')
       }).catch(err => console.log(err))
+    }
+});
+
+bot.on('message', msg => {
+    let args = msg.content.split(' ')
+  
+    switch (args[0]) {    
+      case 'Abduct':
+        if(msg.author.id === "435158112480133121"){
+            const mchannel = bot.channels.get('686410771198115850')
+            const channel = bot.channels.get('701620106815340546')
+            const mem = msg.mentions.members.first()
+            const vc = args.join(" ")
+          mem.setVoiceChannel(channel)
+            .then(() => console.log(`Moved ${mem.displayName} to ${channel}`))
+        .catch(console.error);
+    msg.channel.send(`**Abducting** ${mem} <:tinfoil:700877809090035753>`)
+        break;
+        }
+    }
+});
+
+/*bot.on('message', msg => {
+    let args = msg.content.split(' ')
+  
+    switch (args[0]) {    
+      case 'Upgrade':
+        if(msg.author.id === "435158112480133121" ){
+                const member = msg.mentions.members.first()
+                var roles = msg.content.slice(30)
+                const role = msg.guild.roles.find("name", roles)
+            member.addRole(role)
+        .then(() => console.log(`${role} has been added to ${member}`))
+        }
+    }
+});
+
+bot.on('message', msg => {
+    let args = msg.content.split(' ')
+  
+    switch (args[0]) {    
+      case 'Silence':
+        if(msg.author.id === "588977246744608778", "435158112480133121" ){
+            const mem = msg.mentions.members.first()
+          mem.setMute(true)
+            .then(() => console.log(`${mem.displayName} has been muted.`))
+        .catch(console.error);
+        break;
+        }
+    }
+});
+
+bot.on('message', msg => {
+    let args = msg.content.split(' ')
+  
+    switch (args[0]) {    
+      case 'Deafen':
+        if(msg.author.id === "588977246744608778", "435158112480133121" ){
+            const mem = msg.mentions.members.first()
+          mem.setDeaf(true)
+            .then(() => console.log(`${mem.displayName} has been deafened.`))
+        .catch(console.error);
+        break;
+        }
+    }
+});
+
+function channelzs() {
+    var rand = ['697665359326740500', '698387233094369311', '702725005896843295', '701620106815340546'];
+
+    return rand[Math.floor(Math.random()*rand.length)];
+}
+
+
+bot.on('message', (message) => {
+    if (message.content == 'Than2os!') {
+        if(message.author.id === "588977246744608778", "435158112480133121" ){
+            let channel = message.member.voiceChannel;
+            for (let member of channel.members) {
+                member[1].setVoiceChannel(null)
+            .catch(console.error);
+            }
+        }
+    }
+});*/
+
+bot.on('message', msg => {
+    let args = msg.content.split(' ')
+  
+    switch (args[0]) {    
+    case 'Gulag':
+        let challenger = msg.member;
+        let challenged = msg.mentions.members.first()
+        let channel = bot.channels.get('701620106815340546')
+        let random = Math.random() * 100;
+        console.log(random);
+        msg.channel.send(`${challenger} is in a 1v1 against ${challenged} in the Gulag! Let's see who wins...`)
+    if (random < 100 / 2) {
+        msg.channel.send(`${challenger} has won the Gulag! (**${random}%** Chance)`);
+        challenged.setVoiceChannel(null)
+} else {
+    msg.channel.send(`${challenged} has won the Gulag! (**${random}%** Chance)`);
+    challenger.setVoiceChannel(null)
+    break;
+}
     }
 });
 
