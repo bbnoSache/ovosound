@@ -125,7 +125,7 @@ bot.on('messageReactionRemove', (messageReaction, user) =>{
 
 bot.on('messageReactionAdd', (messageReaction, user) =>{
     var roleName = messageReaction.emoji.name
-    var role9 = messageReaction.message.guild.roles.find("name", "Content Creator");
+    var role9 = messageReaction.message.guild.roles.find("name", "Content Creators");
     var member = messageReaction.message.guild.members.find(member => member.id === user.id);
     if(member)
     {
@@ -138,7 +138,7 @@ bot.on('messageReactionAdd', (messageReaction, user) =>{
 
 bot.on('messageReactionRemove', (messageReaction, user) =>{
     var roleName = messageReaction.emoji.name
-    var role9 = messageReaction.message.guild.roles.find("name", "Content Creator");
+    var role9 = messageReaction.message.guild.roles.find("name", "Content Creators");
     var member = messageReaction.message.guild.members.find(member => member.id === user.id);
     if(member)
     {
