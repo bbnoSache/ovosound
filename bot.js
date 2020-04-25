@@ -123,6 +123,32 @@ bot.on('messageReactionRemove', (messageReaction, user) =>{
     }
 });
 
+bot.on('messageReactionAdd', (messageReaction, user) =>{
+    var roleName = messageReaction.emoji.name
+    var role9 = messageReaction.message.guild.roles.find("name", "Content Creator");
+    var member = messageReaction.message.guild.members.find(member => member.id === user.id);
+    if(member)
+    {
+        if(roleName === 'blue'){
+            member.addRole(role9.id)
+            console.log('Added CC role to ' + member.user.tag + '')
+        }
+    }
+});
+
+bot.on('messageReactionRemove', (messageReaction, user) =>{
+    var roleName = messageReaction.emoji.name
+    var role9 = messageReaction.message.guild.roles.find("name", "Content Creator");
+    var member = messageReaction.message.guild.members.find(member => member.id === user.id);
+    if(member)
+    {
+        if(roleName === 'blue'){
+            member.removeRole(role9.id)
+            console.log('Removed CC role from ' + member.user.tag + '')
+        }
+    }
+});
+
 bot.on('guildMemberAdd', member=>{
     let channel = member.guild.channels.find(channel => channel.id === "686410560669351958")
     const embed = new RichEmbed()
